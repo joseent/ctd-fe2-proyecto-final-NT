@@ -44,7 +44,7 @@ describe("Pagina Citas", () => {
     });
   });
   describe("Cuando renderizamos el componentea", () => {
-    test("Debería mostrar una cita al hacer clic en el botón de aleatorio", async () => {
+    it("Debería mostrar una cita al hacer clic en el botón de aleatorio", async () => {
       render(
         <Provider store={store}>
           <Cita />
@@ -61,10 +61,10 @@ describe("Pagina Citas", () => {
         expect(quoteElement.textContent).not.toBe("No se encontro ninguna cita");
       });
     });
-    test("debería llamar a limpiar y restablecer el valor de entrada al hacer clic en el botón Borrar", () => {
+    it("debería llamar a limpiar y restablecer el valor de entrada al hacer clic en el botón Borrar", () => {
 
       render(<Provider store={store}>
-        <App />
+        <Cita />
       </Provider>);
 
       const input = screen.getByPlaceholderText("Ingresa el nombre del autor");

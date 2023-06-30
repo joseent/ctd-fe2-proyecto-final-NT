@@ -5,20 +5,21 @@ import {
   ImagenTarjetaNoticia,
   TituloTarjetaNoticia,
   BotonLectura,
+  TarjetaNoticia,
 } from "./styled";
-import { INoticiasNormalizadas } from "./Noticias copy";
+import { INoticiasNormalizadas } from "./noticiasInterface";
 
 interface TarjetaNoticiaProps {
   noticia: INoticiasNormalizadas;
   onVerMasClick: (noticia: INoticiasNormalizadas) => void;
 }
 
-const TarjetaNoticia: React.FC<TarjetaNoticiaProps> = ({
+const TarjetaNoticiaComp: React.FC<TarjetaNoticiaProps> = ({
   noticia,
   onVerMasClick,
 }) => {
   return (
-    <div>
+    <TarjetaNoticia>
     <ImagenTarjetaNoticia src={noticia.imagen} />
     <TituloTarjetaNoticia>{noticia.titulo}</TituloTarjetaNoticia>
     <FechaTarjetaNoticia>{noticia.fecha}</FechaTarjetaNoticia>
@@ -28,8 +29,8 @@ const TarjetaNoticia: React.FC<TarjetaNoticiaProps> = ({
     <BotonLectura onClick={() => onVerMasClick(noticia)}>
       Ver más
     </BotonLectura>
-  </div>
+  </TarjetaNoticia>
   );
 };
 
-export default TarjetaNoticia;
+export default TarjetaNoticiaComp;

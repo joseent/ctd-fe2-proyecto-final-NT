@@ -9,7 +9,7 @@ import {
     BotonSuscribir,
     CotenedorTexto,
   } from "./styled";
-  import { INoticiasNormalizadas } from "./Noticias copy";
+  import { INoticiasNormalizadas } from "./noticiasInterface";
   import { SuscribeImage, CloseButton as Close } from "../../assets";
   
   interface ModalNoticiaProps {

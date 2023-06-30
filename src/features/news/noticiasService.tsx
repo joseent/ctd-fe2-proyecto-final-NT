@@ -1,6 +1,6 @@
 // services/noticiasService.ts
 import { obtenerNoticias } from "./fakeRest";
-import { INoticiasNormalizadas } from "./Noticias copy";
+import { INoticiasNormalizadas } from "./noticiasInterface";
 
 export async function obtenerNoticiasData(): Promise<INoticiasNormalizadas[]> {
   const respuesta = await obtenerNoticias();

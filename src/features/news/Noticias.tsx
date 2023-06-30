@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { obtenerNoticiasData } from "./noticiasService";
-import { INoticiasNormalizadas } from "./Noticias copy";
+import { INoticiasNormalizadas } from "./noticiasInterface";
 import { ContenedorNoticias, TituloNoticias, ListaNoticias } from "./styled";
 import TarjetaNoticia from "./TarjetaNoticia";
 import ModalNoticia from "./ModalNoticia";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//Se dividio el codigo en diferentes compoenentes y servicios mas especializados y reutilizables. //
+//Aplicando el principio SOLID al separar responsabilidades y promover la reutilizacion del codigo//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const Noticias = () => {
   const [noticias, setNoticias] = useState<INoticiasNormalizadas[]>([]);

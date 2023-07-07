@@ -65,7 +65,6 @@ describe("Pagina Citas", () => {
       expect(screen.getByText(/No se encontro ninguna cita/i)).toBeInTheDocument();
     });
   });
-
   describe("Cuando clickeo en el botón de aleatorio", () => {
     it("Debería mostrar una cita aleatoria (en este ejemplo traera siempre el primer elemento del mockup)", async () => {
       render(<Cita />);
@@ -84,9 +83,8 @@ describe("Pagina Citas", () => {
           screen.getByText(/I don't want to sound like a killjoy, but becuase this is not to my taste I don't think anyone else should be allowed to enjoy it./i)
         ).toBeInTheDocument();
       });
+    });
   });
-});
-
   describe("Cuando ingreso un autor valido", () => {
     it("debería mostrar la cita correspondiente al autor ingresado", async () => {
 
@@ -138,7 +136,6 @@ describe("Pagina Citas", () => {
       });
     });
   });
-
   describe("Cuando se clickea borrar", () => {
     it("debería llamar a la funcion limpiar y restablecer el valor de entrada", async () => {
 

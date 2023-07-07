@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { obtenerNoticiasData } from "./noticiasService";
-import { INoticiasNormalizadas } from "./noticiasInterface";
+import { INoticiasNormalizadas } from "./noticiasInterfaces";
 import { ContenedorNoticias, TituloNoticias, ListaNoticias } from "./styled";
 import TarjetaNoticia from "./TarjetaNoticia";
 import ModalNoticia from "./ModalNoticia";

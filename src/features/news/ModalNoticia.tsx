@@ -1,4 +1,3 @@
-// components/ModalNoticia.tsx
 import {
     CloseButton,
     TarjetaModal,
@@ -9,14 +8,8 @@ import {
     BotonSuscribir,
     CotenedorTexto,
   } from "./styled";
-  import { INoticiasNormalizadas } from "./noticiasInterface";
+  import { ModalNoticiaProps } from "./noticiasInterfaces";
   import { SuscribeImage, CloseButton as Close } from "../../assets";
-  
-  interface ModalNoticiaProps {
-    noticia: INoticiasNormalizadas;
-    onClose: () => void;
-    onSuscribirClick: () => void;
-  }
   
   const ModalNoticia: React.FC<ModalNoticiaProps> = ({
     noticia,

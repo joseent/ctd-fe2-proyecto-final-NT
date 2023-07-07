@@ -7,12 +7,7 @@ import {
   BotonLectura,
   TarjetaNoticia,
 } from "./styled";
-import { INoticiasNormalizadas } from "./noticiasInterface";
-
-interface TarjetaNoticiaProps {
-  noticia: INoticiasNormalizadas;
-  onVerMasClick: (noticia: INoticiasNormalizadas) => void;
-}
+import { TarjetaNoticiaProps } from "./noticiasInterfaces";
 
 const TarjetaNoticiaComp: React.FC<TarjetaNoticiaProps> = ({
   noticia,

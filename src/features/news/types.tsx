@@ -8,13 +8,13 @@ export interface INoticiasNormalizadas {
   descripcionCorta?: string;
 }
 
-  export interface ModalNoticiaProps {
-    noticia: INoticiasNormalizadas;
-    onClose: () => void;
-    onSuscribirClick: () => void;
-  }
+export interface ModalNoticiaProps {
+  noticia: INoticiasNormalizadas;
+  onClose: () => void;
+  onSuscribirClick: () => void;
+}
 
-  export interface TarjetaNoticiaProps {
+export interface TarjetaNoticiaProps {
   noticia: INoticiasNormalizadas;
   onVerMasClick: (noticia: INoticiasNormalizadas) => void;
 }

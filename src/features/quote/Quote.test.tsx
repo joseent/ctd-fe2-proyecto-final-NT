@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import { API_URL } from "../../app/constants";
 import Cita from "./Cita";
 
-const mockedData = [
+const MOCKED_DATA = [
   {
     quote: "I used to be with it. But then they changed what it was. Now what I'm with isn't it, and what's it seems scary and wierd. It'll happen to you.",
     character: "Abe Simpson",
@@ -26,13 +26,21 @@ const mockedData = [
 
 ]
 
-const randomQuote = mockedData[1];
+const TEST_TEXTS = {
+cita:/Obtener Cita/i,
+citaAleatoria: /Obtener cita aleatoria/i,
+citaTexto: /No se encontro ninguna cita/i,
+autorInput:/Ingresa el nombre del autor/i,
+errorInput:"Por favor ingrese un nombre válido",}
+
+
+const randomQuote = MOCKED_DATA[1];
 function buscarPorTexto(texto: string) {
-  const resultado = mockedData.filter(objeto => objeto.character.toLowerCase().includes(texto.toLowerCase()));
+  const resultado = MOCKED_DATA.filter(objeto => objeto.character.toLowerCase().includes(texto.toLowerCase()));
   return resultado;
 }
 
-export const handlers = [
+const handlers = [
   rest.get(API_URL, (req, res, ctx) => {
     const character = req.url.searchParams.get('character');
 
@@ -62,25 +70,19 @@ describe("Pagina Citas", () => {
   describe("Cuando renderizamos el componente", () => {
     it("No deberia mostrar ninguna cita", async () => {
       render(<Cita />);
-      expect(screen.getByText(/No se encontro ninguna cita/i)).toBeInTheDocument();
+      expect(screen.getByText(TEST_TEXTS.citaTexto)).toBeInTheDocument();
     });
   });
   describe("Cuando clickeo en el botón de aleatorio", () => {
     it("Debería mostrar una cita aleatoria (en este ejemplo traera siempre el primer elemento del mockup)", async () => {
       render(<Cita />);
 
-      const quoteElement = screen.getByTestId("citaPersonaje");
-
-      await waitFor(() => {
-        expect(quoteElement.textContent).toBe("No se encontro ninguna cita");
-      });
-
-      const randomButton = screen.getByRole("button", { name: /Obtener cita aleatoria/i });
+      const randomButton = screen.getByRole("button", { name: TEST_TEXTS.citaAleatoria });
       await userEvent.click(randomButton);
 
       await waitFor(() => {
         expect(
-          screen.getByText(/I don't want to sound like a killjoy, but becuase this is not to my taste I don't think anyone else should be allowed to enjoy it./i)
+          screen.getByText(MOCKED_DATA[1].quote)
         ).toBeInTheDocument();
       });
     });
@@ -90,15 +92,15 @@ describe("Pagina Citas", () => {
 
       render(<Cita />);
 
-      const input = screen.getByPlaceholderText("Ingresa el nombre del autor");
-      const qouteButton = await screen.findByLabelText(/Obtener Cita/i);
+      const input = screen.getByPlaceholderText(TEST_TEXTS.autorInput);
+      const qouteButton = await screen.findByLabelText(TEST_TEXTS.cita);
+      const quoteElement = screen.getByText(TEST_TEXTS.citaTexto);
       await userEvent.click(input);
       await userEvent.keyboard("bart");
       await userEvent.click(qouteButton);
-      const quoteElement = screen.getByTestId("citaPersonaje");
 
       await waitFor(() => {
-        expect(quoteElement.textContent).toBe("You're turning me into a criminal when all I want to be is a petty thug.");
+        expect(quoteElement.textContent).toBe(MOCKED_DATA[2].quote);
       });
     });
   });
@@ -107,15 +109,15 @@ describe("Pagina Citas", () => {
 
       render(<Cita />);
 
-      const input = screen.getByPlaceholderText("Ingresa el nombre del autor");
-      const qouteButton = await screen.findByLabelText(/Obtener Cita/i);
+      const input = screen.getByPlaceholderText(TEST_TEXTS.autorInput);
+      const qouteButton = await screen.findByLabelText(TEST_TEXTS.cita);
+      const quoteElement = screen.getByText(TEST_TEXTS.citaTexto);
       await userEvent.click(input);
       await userEvent.keyboard("qwerty");
       await userEvent.click(qouteButton);
-      const quoteElement = screen.getByTestId("citaPersonaje");
 
       await waitFor(() => {
-        expect(quoteElement.textContent).toBe("Por favor ingrese un nombre válido");
+        expect(quoteElement.textContent).toBe(TEST_TEXTS.errorInput);
       });
     });
   });
@@ -124,15 +126,15 @@ describe("Pagina Citas", () => {
 
       render(<Cita />);
 
-      const input = screen.getByPlaceholderText("Ingresa el nombre del autor");
-      const qouteButton = await screen.findByLabelText(/Obtener Cita/i);
+      const input = screen.getByPlaceholderText(TEST_TEXTS.autorInput);
+      const qouteButton = await screen.findByLabelText(TEST_TEXTS.cita);
+      const quoteElement = screen.getByText(TEST_TEXTS.citaTexto);
       await userEvent.click(input);
       await userEvent.type(input, "12");
       await userEvent.click(qouteButton);
-      const quoteElement = screen.getByTestId("citaPersonaje");
 
       await waitFor(() => {
-        expect(quoteElement.textContent).toBe("Por favor ingrese un nombre válido");
+        expect(quoteElement.textContent).toBe(TEST_TEXTS.errorInput);
       });
     });
   });
@@ -141,11 +143,11 @@ describe("Pagina Citas", () => {
 
       render(<Cita />);
 
-      const input = screen.getByPlaceholderText("Ingresa el nombre del autor");
+      const input = screen.getByPlaceholderText(TEST_TEXTS.autorInput);
       await userEvent.click(input);
       await userEvent.keyboard("Marge");
 
-      const botonBorrar = screen.getByLabelText(/Borrar/i);
+      const botonBorrar = screen.getByRole("button", { name: /Borrar/i });
       await userEvent.click(botonBorrar);
 
       await expect((input as HTMLInputElement).value).toBe("");

@@ -1,11 +1,11 @@
 // services/noticiasService.ts
 import { obtenerNoticias } from "./fakeRest";
-import { INoticiasNormalizadas } from "./noticiasInterfaces";
+import { INoticiasNormalizadas } from "./types";
 import { calcularMinutos, titulo } from "./utils";
 
 export async function obtenerNoticiasData(): Promise<INoticiasNormalizadas[]> {
   const respuesta = await obtenerNoticias();
-  
+
   return respuesta.map((n) => ({
     id: n.id,
     titulo: titulo(n.titulo),

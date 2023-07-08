@@ -8,7 +8,7 @@ import {
     BotonSuscribir,
     CotenedorTexto,
   } from "./styled";
-  import { ModalNoticiaProps } from "./noticiasInterfaces";
+  import { ModalNoticiaProps } from "./types";
   import { SuscribeImage, CloseButton as Close } from "../../assets";
   
   const ModalNoticia: React.FC<ModalNoticiaProps> = ({

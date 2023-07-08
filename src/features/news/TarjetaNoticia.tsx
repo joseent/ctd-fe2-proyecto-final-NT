@@ -7,7 +7,7 @@ import {
   BotonLectura,
   TarjetaNoticia,
 } from "./styled";
-import { TarjetaNoticiaProps } from "./noticiasInterfaces";
+import { TarjetaNoticiaProps } from "./types";
 
 const TarjetaNoticiaComp: React.FC<TarjetaNoticiaProps> = ({
   noticia,
